@@ -38,7 +38,7 @@ $s=$conn->query($query);
 }
     fclose($handle);
 }
-echo "File data successfully imported to database!!";
+ header('Location:usertable.php');
 }
 }
 ?>

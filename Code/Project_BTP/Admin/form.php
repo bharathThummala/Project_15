@@ -1,7 +1,7 @@
-﻿<!-- <?php
+﻿<?php
 session_start();
 include "dbConfig.php";
-?>  -->
+?>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +25,7 @@ include "dbConfig.php";
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-          <!--      <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['User'].'</font></a>'; ?> -->
+               <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['User'].'</font></a>'; ?>
                 <center class="brand" style="position: absolute;left: 640px;font-size: 30px;"><font color="#00e6e6">ADMIN PANEL</font></center>
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav pull-right">
@@ -140,11 +140,11 @@ include "dbConfig.php";
 								<h3>Add User Form</h3>
 							</div>
 							<div class="module-body">
-									<form class="form-horizontal row-fluid">
+									<form class="form-horizontal row-fluid" action="test.php" method="POST">
 										<div class="control-group">
 											<label class="control-label" for="basicinput">First Name</label>
 											<div class="controls">
-												<input type="text" required="required" id="basicinput" placeholder="Type something here..." class="span8">
+												<input type="text" name="fname" required="required" id="basicinput" placeholder="Type something here..." class="span8">
 												<span class="help-inline">Minimum 5 Characters</span>
 											</div>
 										</div>
@@ -152,7 +152,7 @@ include "dbConfig.php";
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Last Name</label>
 											<div class="controls">
-												<input type="text" required="required" id="basicinput" placeholder="Type something here..." class="span8">
+												<input type="text" name="lname" required="required" id="basicinput" placeholder="Type something here..." class="span8">
 												<span class="help-inline">Minimum 5 Characters</span>
 											</div>
 										</div>
@@ -160,7 +160,7 @@ include "dbConfig.php";
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Name</label>
 											<div class="controls">
-												<input type="text" required="required" id="basicinput" placeholder="Type something here..." class="span8">
+												<input type="text" name="uname" required="required" id="basicinput" placeholder="Type something here..." class="span8">
 												<span class="help-inline">Minimum 8 Characters</span>
 											</div>
 										</div>
@@ -168,10 +168,10 @@ include "dbConfig.php";
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Gender</label>
 											<div class="controls">
-												<select tabindex="1" data-placeholder="Select here.." class="span8">
+												<select tabindex="1" name="ugender" data-placeholder="Select here.." class="span8">
 													<option value="">Select here..</option>
-													<option value="Category 1">Male</option>
-													<option value="Category 2">Female</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
 												</select>
 											</div>
 										</div>
@@ -179,14 +179,14 @@ include "dbConfig.php";
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Email</label>
 											<div class="controls">
-												<input type="email" required="required" id="basicinput" placeholder="xyz@email.com" class="span8">
+												<input type="email" name="uemail" required="required" id="basicinput" placeholder="xyz@email.com" class="span8">
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Password</label>
 											<div class="controls">
-												<input type="password" required="required" id="basicinput" placeholder="**********" class="span8">
+												<input type="password" name="upass" required="required" id="basicinput" placeholder="**********" class="span8">
 												<span class="help-inline">Minimum 8 Characters</span>
 											</div>
 										</div>
@@ -194,7 +194,7 @@ include "dbConfig.php";
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Phone.no</label>
 											<div class="controls">
-												<input type="tel" required="required"  id="basicinput" placeholder="0123456789" class="span8">
+												<input type="tel" name="uph" required="required"  id="basicinput" placeholder="9*********" class="span8">
 											</div>
 										</div>
 
@@ -202,18 +202,18 @@ include "dbConfig.php";
 											<label class="control-label">User Role</label>
 											<div class="controls">
 												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+													<input type="radio" name="urole" id="optionsRadios1" value="Student" checked="">
 													Student
 												</label> 
 												<label class="radio">
-													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+													<input type="radio" name="urole" id="optionsRadios2" value="Faculty">
 													Faculty
 												</label> 
 											</div>
 										</div>
 										<div class="control-group">
 											<div class="controls">
-												<button type="submit" class="btn">Submit Form</button>
+												<button type="submit" name="submit" class="btn">Submit Form</button>
 											</div>
 										</div>
 									</form>

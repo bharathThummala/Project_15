@@ -71,16 +71,16 @@ include "dbConfig.php";
                         <div class="content">
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid">
-                                    <a href="#" class="btn-box big span4"><i class=" icon-user"></i>
+                                    <a href="usertable.php" class="btn-box big span4"><i class=" icon-user"></i>
                                         <p class="text-muted">
-                                            Total faculties</p>
+                                            Users</p>
                                     </a><a href="#" class="btn-box big span4"><i class="icon-user"></i>
                                         <p class="text-muted">
-                                            Total students</p>
+                                            Students</p>
                                     </a>
                                     </a><a href="#" class="btn-box big span4"><i class="icon-user"></i>
                                         <p class="text-muted">
-                                            Total Courses</p>
+                                            faculties</p>
                                     </a>
                                 </div>
                                 <div class="btn-box-row row-fluid">

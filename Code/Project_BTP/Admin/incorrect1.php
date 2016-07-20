@@ -2,7 +2,7 @@
  <html lang="en" class="no-js"> 
     <head>
         <meta charset="UTF-8" />
-        <title>Incorrect Username and Password</title>
+        <title>File</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
@@ -27,9 +27,8 @@ body {
                             
                                 
 			<h6>Wrong Format OR File</h6>
-		        <h6> Submit again </h6>
                                 <p class="login button"> 
-                                    <input type="submit" onclick="location.href='form.php';" value="Login" /> 
+                                    <input type="submit" onclick="location.href='form.php';" value="Submit Again" /> 
 			        </p>
                         </div>
 						</div>
