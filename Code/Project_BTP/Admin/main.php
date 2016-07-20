@@ -87,7 +87,7 @@ include "dbConfig.php";
                                     <div class="span8">
                                         <div class="row-fluid">
                                             <div class="span12" style="position : relative; left :145px;">
-                                                <a href="#" class="btn-box small span4"><i class="icon-group"></i><b>Add Users</b>
+                                                <a href="form.php" class="btn-box small span4"><i class="icon-group"></i><b>Add Users</b>
                                                 </a><a href="#" class="btn-box small span4"><i class="icon-group"></i><b>Add Course</b>
                                                 </a><a href="#" class="btn-box small span4"><i class="icon-exchange"></i><b>Expenses</b></a>
                                             </div>
