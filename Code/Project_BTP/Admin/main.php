@@ -54,7 +54,7 @@ include "dbConfig.php";
                                 </a></li>
                                 <li><a href="activity.html"><i class="menu-icon icon-bullhorn"></i>News Feed </a>
                                 </li>
-                                <li><a href="message.html"><i class="menu-icon icon-inbox"></i>Student Info</a></li>
+                                <li><a href="studentable.php"><i class="menu-icon icon-inbox"></i>Student Info</a></li>
                                 <li><a href="task.html"><i class="menu-icon icon-tasks"></i>Faculty Info</a></li>
                             </ul>
                             <!--/.widget-nav-->
@@ -74,7 +74,7 @@ include "dbConfig.php";
                                     <a href="usertable.php" class="btn-box big span4"><i class=" icon-user"></i>
                                         <p class="text-muted">
                                             Users</p>
-                                    </a><a href="#" class="btn-box big span4"><i class="icon-user"></i>
+                                    </a><a href="studentable.php" class="btn-box big span4"><i class="icon-user"></i>
                                         <p class="text-muted">
                                             Students</p>
                                     </a>
