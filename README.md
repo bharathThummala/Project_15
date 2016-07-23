@@ -1,1 +1,3 @@
 # Project_15
+
+This project is my B.tech Term project.......About to develop a platform for students to access the all required portal in one only portal like Attendences,Courses,Library,Mess,Hostel etc.....
