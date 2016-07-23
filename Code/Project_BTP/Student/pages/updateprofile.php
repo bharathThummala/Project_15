@@ -13,7 +13,7 @@ include "dbConfig.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Update Profile</title>
+    <title>User Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -216,95 +216,95 @@ include "dbConfig.php";
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form class="form-horizontal" role="form" action="test.php" method="POST">
+                                    <form class="form-horizontal" role="form" action="" method="POST">
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Full_Name:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$Full_Name.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$Full_Name.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Name:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_name.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_name.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Email:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_email.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_email.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Role:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_category.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_category.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Gender:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_gender.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_gender.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">phone_no:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_phone_no.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_phone_no.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Roll_No:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_rollno.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_rollno.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Age:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_age.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_age.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">DOB:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_dob.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_dob.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Address:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_add.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_add.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Branch:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_department.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_department.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Period:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_Period.' '.'years</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_Period.' '.'years</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Current_yr:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_year.' '.'year</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_year.' '.'year</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Semester:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_sem_no.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;">'.$U_sem_no.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Season:</label>
                                             <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_season.'</p>'; ?>
+                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px;font-style: italic;color:#00ced1;">'.$U_season.'</p>'; ?>
                                             </div>
                                         </div>
                                         <br>
