@@ -1,7 +1,7 @@
-﻿<!--<?php
-//session_start();
-//include "dbConfig.php";
-?> -->
+﻿<?php
+session_start();
+include "dbConfig.php";
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                         <i class="icon-reorder shaded"></i></a>
-                     <!--   <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['User'].'</font></a>'; ?> -->
+                       <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['uname'].'</font></a>'; ?> 
                         <center class="brand" style="position: absolute;left: 610px;font-size: 30px;"><font color="#00e6e6">FACULTY PANEL</font></center>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">

@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+include "dbConfig.php";
+?>
+<!DOCTYPE html>
 <html lang="en">
-
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Add User</title>
+	<title>Update</title>
 	<link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link type="text/css" href="css/theme.css" rel="stylesheet">
@@ -21,7 +23,7 @@
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-              <!-- <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['User'].'</font></a>'; ?> -->
+              <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['uname'].'</font></a>'; ?>
                 <center class="brand" style="position: absolute;left: 640px;font-size: 30px;"><font color="#00e6e6">FACULTY PANEL</font></center>
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav pull-right">
@@ -33,7 +35,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="#">Your Profile</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Logout</a></li>
+								<li><a href="logout.php">Logout</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -101,7 +103,7 @@
 							</li>
 							
 							<li>
-								<a href="#">
+								<a href="logout.php">
 									<i class="menu-icon icon-signout"></i>
 									Logout
 								</a>
@@ -110,6 +112,22 @@
 
 					</div><!--/.sidebar-->
 				</div><!--/.span3-->
+				<?php
+				$f=$_SESSION['id'];;
+				$sql="SELECT U_id,F_name,L_name,U_name,U_gender,U_email,U_phone_no,U_category  FROM User WHERE U_id='$f'";
+                             $query = $conn->query($sql);
+                            if($query)
+                            {
+                               $row=mysqli_fetch_row($query);
+                                $Full_Name=$row[1].' '.$row[2];
+                                $U_name=$row[3];
+                                $U_gender=$row[4];
+                                $U_email=$row[5];
+                                $U_phone_no=$row[6];
+                                $U_category=$row[7];
+                            }
+
+				?>
 
 
 				<div class="span9">
@@ -125,56 +143,56 @@
 									    <div class="control-group">
 											<label class="control-label" for="basicinput">Full Name:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$Full_Name.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Name:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$U_name.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Email:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$U_email.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">User Role:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$U_category.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Gender:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$U_gender.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Phone.no:</label>
 											<div class="controls">
-												<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;">kranthi</p>
+												<?php echo '<p class="form-control-static" style="position:relative; top:5px;font-size: 17.5px;font-style: bold;font-style: italic;">'.$U_phone_no.'</p>'; ?>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Designation:</label>
 											<div class="controls">
-												<input type="text" name="des" id="basicinput" placeholder="Enter Your Qualification...." class="span8">
+												<input type="text" name="des" id="basicinput" placeholder="Enter Your Qualification...." class="span8" required="required">
 												<span class="help-inline">Minimum 10 Characters</span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Age:</label>
 											<div class="controls">
-												<input type="number" name="age" id="basicinput" placeholder="Enter Your Age...." class="span8">
+												<input type="number" name="age" id="basicinput" placeholder="Enter Your Age...." class="span8" required="required">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="basicinput">Date Of Birth:</label>
 											<div class="controls">
-												<input type="date" name="dob" id="basicinput" placeholder="Enter Your DOB...." class="span8">
+												<input type="date" name="dob" id="basicinput" placeholder="Enter Your DOB...." class="span8" required="required">
 											</div>
 										</div>
 
@@ -183,36 +201,60 @@
 										    </br>
 											<label class="control-label" for="basicinput">Course-1</label>
 											<div class="controls">
-												<select tabindex="1" name="c1" data-placeholder="Select here.." class="span8">
-													<option value="">Select here..</option>
-													<option value="Category 1">First Row</option>
-													<option value="Category 2">Second Row</option>
-													<option value="Category 3">Third Row</option>
-													<option value="Category 4">Fourth Row</option>
+												<select tabindex="1" name="c1" data-placeholder="Select here.." class="span8" required>
+													<option value="">Select Course-1..</option>
+													<?php
+													$sql="select C_name from Course";
+													$result = $conn->query($sql);
+                                                    if ($result->num_rows > 0) 
+                                                    {
+                                                    while($row = $result->fetch_assoc()) 
+                                                    {
+                                                       echo '<option value="'.$row["C_name"].'">'.$row["C_name"].'</option>';
+
+                                                    }
+                                                    }
+													?>
 												</select>
 											</div>
 											</br>
 											<label class="control-label" for="basicinput">Course-2</label>
 											<div class="controls">
 												<select tabindex="1" name="c2" data-placeholder="Select here.." class="span8">
-													<option value="">Select here..</option>
-													<option value="Category 1">First Row</option>
-													<option value="Category 2">Second Row</option>
-													<option value="Category 3">Third Row</option>
-													<option value="Category 4">Fourth Row</option>
+													<option value="">Select Course-2..</option>
+													<?php
+													$sql="select C_name from Course";
+													$result = $conn->query($sql);
+                                                    if ($result->num_rows > 0) 
+                                                    {
+                                                    while($row = $result->fetch_assoc()) 
+                                                    {
+                                                       echo '<option value="'.$row["C_name"].'">'.$row["C_name"].'</option>';
+
+                                                    }
+                                                    }
+													?>
 												</select>
 											</div>
 											</br>
 											<label class="control-label" for="basicinput">Course-3</label>
 											<div class="controls">
 												<select tabindex="1" name="c3" data-placeholder="Select here.." class="span8">
-													<option value="">Select here..</option>
-													<option value="Category 1">First Row</option>
-													<option value="Category 2">Second Row</option>
-													<option value="Category 3">Third Row</option>
-													<option value="Category 4">Fourth Row</option>
+													<option value="">Select Course-3..</option>
+													<?php
+													$sql="select C_name from Course";
+													$result = $conn->query($sql);
+                                                    if ($result->num_rows > 0) 
+                                                    {
+                                                    while($row = $result->fetch_assoc()) 
+                                                    {
+                                                       echo '<option value="'.$row["C_name"].'">'.$row["C_name"].'</option>';
+
+                                                    }
+                                                    }
+													?>
 												</select>
-											</div> 
+											</div>
 										</div>
 										<div class="control-group">
 											<div class="controls">

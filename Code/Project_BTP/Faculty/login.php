@@ -7,7 +7,7 @@ if (isset($_POST['log']) && !empty($_POST['uname']) && !empty($_POST['pass']))
  $pas=$_POST["pass"];
 $pas=md5($pas);
 $sql = "SELECT U_id,U_name,U_password,U_category FROM User WHERE  U_name='$unam'";
-$sql1= "SELECT Faculty.U_id,User.U_id,User.U_name,Faculty.S_id FROM Faculty,User WHERE Faculty.U_id=User.U_id AND User.U_name='$unam'";
+$sql1= "SELECT Faculty.U_id,User.U_id,User.U_name,Faculty.F_id FROM Faculty,User WHERE Faculty.U_id=User.U_id AND User.U_name='$unam'";
 $query = $conn->query($sql);
 $query1 = $conn->query($sql1);
 if($query)
@@ -32,8 +32,8 @@ if($unam == $u && $pas == $p)
 	$_SESSION['id']=$i;
 	if($unam == $u1)
 	{
-	$_SESSION['sid']=$s1;
-	header('Location:#');	 
+	$_SESSION['fid']=$s1;
+	header('Location:main.php'); 
     }
     else
     {
