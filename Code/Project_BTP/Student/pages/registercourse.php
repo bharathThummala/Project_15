@@ -3,13 +3,14 @@ session_start();
 include "dbConfig.php";
 $sql="SELECT E_date FROM validition WHERE vid=1";
 $query=$conn->query($sql);
-$y=1;
+$f=1;
 if($query)
 {
-    $y=0;
+    $f=0;
     $row=mysqli_fetch_row($query);
     $ed=$row[0];
 }
+$f1=$_SESSION['sid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@ if($query)
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registration</title>
+    <title>Courses</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -98,7 +99,7 @@ if($query)
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                         </li>
      
                         <li>
@@ -164,72 +165,33 @@ if($query)
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
-
+        <?php 
+         $sql="select C_id from Dummy where S_id='$f1'";
+         $result = $conn->query($sql);
+         $in=0;
+         if ($result->num_rows > 0) 
+         {
+         while($row = $result->fetch_assoc()) 
+         { 
+            $c12=$row['C_id'];
+            $sql2="SELECT C_name,No_Of_Credits,Type FROM Course WHERE C_id='$c12'";
+            $query2 =$conn->query($sql2);
+            $row1=mysqli_fetch_row($query2);
+            $course[]=$row1[0];
+            $credits[]=$row1[1];
+            $type[]=$row1[2]; 
+            $in++;
+          }
+          }
+        ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><Center class="page-header">Course Registration</Center></h1>
+                    <h1><Center class="page-header">Registered Courses</Center></h1>
                 </div>
 
                 <!-- /.col-lg-12 -->
-            </div> 
-                       <?php
-            $f=$_SESSION['id'];
-            $f1=$_SESSION['sid'];
-            $sql="SELECT U_id,F_name,L_name,U_name,U_gender,U_email,U_phone_no,U_category  FROM User WHERE U_id='$f'";
-                             $query = $conn->query($sql);
-                            if($query)
-                            {
-                               $row=mysqli_fetch_row($query);
-                                $Full_Name=$row[1].' '.$row[2];
-                                $U_name=$row[3];
-                                $U_gender=$row[4];
-                                $U_email=$row[5];
-                                $U_phone_no=$row[6];
-                                $U_category=$row[7];
-                            }
-            $sql1="SELECT S_id,U_id,S_rollno,S_age,S_dob,S_address FROM Student WHERE U_id='$f' AND S_id='$f1'";
-                             $query1 = $conn->query($sql1);
-                            if($query1)
-                            {
-                                $row=mysqli_fetch_row($query1);
-                                $U_rollno=$row[2];
-                                $U_age=$row[3];
-                                $U_dob=$row[4];
-                                $U_add=$row[5];
-                            }
-            $sql2="SELECT Department.D_name,Department.D_period  FROM Department,Belongs WHERE Belongs.S_id='$f1' AND Department.D_id=Belongs.D_id";
-                             $query2 = $conn->query($sql2);
-                            if($query2)
-                            {
-                              $row=mysqli_fetch_row($query2);
-                              $U_department=$row[0];
-                              $U_Period=$row[1];
-                            }  
-            $sql3="SELECT Semester.year,Semester.season,Semester.Sem_no  FROM Semester,Studying WHERE Studying.S_id='$f1' AND Semester.Sem_id=Studying.Sem_id";
-                             $query3 = $conn->query($sql3);
-                            if($query3)
-                            {
-                              $row=mysqli_fetch_row($query3);
-                              $U_year=$row[0];
-                              $U_season=$row[1];
-                              $U_sem_no=$row[2];
-                            }  
-            $sql4="SELECT Course.C_name,Course.No_Of_Credits,Course.Type FROM Semester,Offers,Course,Handles,Department WHERE Semester.Sem_no='$U_sem_no' AND Semester.Sem_id=Offers.Sem_id AND Offers.C_id=Course.C_id AND Department.D_name='$U_department' AND Department.D_id=Handles.D_id AND Handles.C_id=Course.C_id";
-                              $result = $conn->query($sql4);
-                              $in=0;
-                              if ($result->num_rows > 0) 
-                              {
-                              while($row = $result->fetch_assoc()) 
-                              {
-                                   $course[]=$row['C_name'];
-                                    $credits[]=$row['No_Of_Credits'];
-                                   $type[]=$row['Type']; 
-                                   $in++;
-                              }
-                              }
-            ?>          
+            </div>          
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -239,72 +201,25 @@ if($query)
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form class="form-horizontal" role="form" action="Conform.php" method="POST">
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Full_Name:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$Full_Name.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">User_Name:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_name.'</p>'; ?> 
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Roll_no:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_rollno.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Branch:</label>
-                                            <div class="col-sm-10">
-                                           <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_department.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_year:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_year.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_sem:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_sem_no.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_season:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_season.'</p>'; ?> 
-                                            </div>
-                                        </div> 
-                                       <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 16px;" for="text"> AVALIABLE_COURSES</label>
-                                        <br><br>
+                                    <form class="form-horizontal" role="form" action="" method="POST">
+                                       
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Core_Courses:</label>
                                             <div class="col-sm-10">
                                             <?php 
+
                                             $flag1=0;
                                             for($ii=0;$ii<$in;$ii++)
                                             {
                                             	if($type[$ii]=='CORE')
                                             	{ $flag1=1;
-                                            echo'
-                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
+                                                    echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
                                             
                                             }
                                             }
                                             if($flag1==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             }  
                                             ?>
                                             </div>
@@ -319,19 +234,14 @@ if($query)
                                             {
                                             	if($type[$ii]=='Flexi_CORE')
                                             	{ $flag2=1;
-                                            echo'
-                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
+                                            echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
                                             
                                             }
                                             }
 
                                             if($flag2==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             } 
                                             ?>
                                             
@@ -347,18 +257,13 @@ if($query)
                                             {
                                             	if($type[$ii]=='Bouquet_CORE')
                                             	{ $flag3=1;
-                                            echo'
-                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
+                                                    echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
                                             
                                             }
                                             } 
                                             if($flag3==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             } 
                                             ?>  
                                             </div>
@@ -373,18 +278,13 @@ if($query)
                                             {
                                             	if($type[$ii]=='It_Elective')
                                             	{ $flag4=1;
-                                            echo'
-                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
-                                            
+                                               echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
+
                                             }
                                             } 
                                             if($flag4==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             } 
                                             ?>
                                             </div>
@@ -400,18 +300,13 @@ if($query)
                                             	if($type[$ii]=='Math_Elective')
                                             	{
                                             		$flag5=1;
-                                            echo'
-                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
+                                            echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
                                             
                                             }
                                             }
                                             if($flag5==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             }  
                                             ?>
                                             </div>
@@ -427,48 +322,47 @@ if($query)
                                             	if($type[$ii]=='Skill_Elective')
                                             	{
                                             		$flag=1;
-                                            echo'
-                                            <div class="checkbox" name="cx[]" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
-                                                <label>
-                                                    <input type="checkbox" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
-                                                </label>
-                                            </div><br>';
-                                            
+                                            echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">'.$course[$ii].'**('.$credits[$ii].'Credits)</p>';
+
                                             }
                                             }
                                             if($flag==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
                                             } 
                                             ?>
-                                            
                                             </div>
                                             </div>
-                                            <br>
-                                             <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 17px;" for="text">Additional_Project_1</label>
                                             <br><br>
-                                            <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 16px;" for="text">Faculty_name:</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" class="form-control" style="position:relative; left: 65px;" name="fname1" placeholder="Enter Faculty Name....">
-                                            </div>
-                                            </div>
-                                            <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 16px;" for="text">No_Of_Credits:</label>
-                                            <div class="col-sm-10">
-                                            <select class="form-control" style="position:relative; left: 65px; " name="cr1">
-                                                <option value="">Select credits..</option>
-                                                <option value="2">2-cr</option>
+                                             <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 17px;" for="text">Additional_Project_1:</label>
+                                             <div class="col-sm-10" >
+                                            <?php 
+                                            $flagx=0;
+                                            $sqlx="select Faculty_name,Credits from Additional where S_id='$f1'";
+                                            $queryx =$conn->query($sqlx);
+                                            $rowx=mysqli_fetch_row($queryx);
+                                            $facul=$rowx[0];
+                                            $cred=$rowx[1];
+                                            if(!empty($facul) && !empty($cred))
+                                            {
+                                            $flagx=1;
+                                            echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Faculty_name:'.' '.$facul.' '.'('.$cred.'Credits)</p>';
                                             
-                                                <option value="4">4-cr</option>
-                                              
-                                            </select>
-                                            </div>
+                                            }
+                                            if($flagx==0)
+                                            {
+                                                echo '<p class="form-control-static" style="position:relative; left: 120px; font-size: 19px; font-style: italic;">Not_Avaliable OR Not_Registered</p>';
+                                            } 
+                                            ?>
                                             </div>
                                             <br>
-                                        <button type="submit" name="log1" style="position:relative;left: 375px;" class="btn btn-default">Submit</button>
-                                        <button type="reset"  onclick="form.html" style="position:relative;left: 400px;" class="btn btn-default">Reset</button>
-                                    </form>
+                                            <br>
+                                            <br>
+                                            
+                                            <br>
+                                            </form>
+                                        <button type="submit" onclick="location.href='addordrop.php';" style="position:relative;left: 375px;" class="btn btn-default">Edit</button>
+                                    
                                 </div>
                                
                                 

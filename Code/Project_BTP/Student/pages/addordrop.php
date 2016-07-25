@@ -10,6 +10,7 @@ if($query)
     $row=mysqli_fetch_row($query);
     $ed=$row[0];
 }
+$f1=$_SESSION['sid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -164,72 +165,54 @@ if($query)
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        <?php 
+         $sql="select C_id from Dummy where S_id='$f1'";
+         $result = $conn->query($sql);
+         $in=0;
+         if ($result->num_rows > 0) 
+         {
+         while($row = $result->fetch_assoc()) 
+         { 
+            $c12=$row['C_id'];
+            $sql2="SELECT C_name,No_Of_Credits,Type FROM Course WHERE C_id='$c12'";
+            $query2 =$conn->query($sql2);
+            $row1=mysqli_fetch_row($query2);
+            $course[]=$row1[0];
+            $credits[]=$row1[1];
+            $type[]=$row1[2]; 
+            $in++;
+          }
+          }
+          
+          $sql="select C_id from Dummy1 where S_id='$f1'";
+         $result = $conn->query($sql);
+         $in1=0;
+         if ($result->num_rows > 0) 
+         {
+         while($row = $result->fetch_assoc()) 
+         { 
+            $c12=$row['C_id'];
+            $sql2="SELECT C_name,No_Of_Credits,Type FROM Course WHERE C_id='$c12'";
+            $query2 =$conn->query($sql2);
+            $row1=mysqli_fetch_row($query2);
+            $course1[]=$row1[0];
+            $credits1[]=$row1[1];
+            $type1[]=$row1[2]; 
+            $in1++;
+          }
+          }
+
+        ?>
 
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><Center class="page-header">Course Registration</Center></h1>
+                    <h1><Center class="page-header">Add or Drop Courses</Center></h1>
                 </div>
 
                 <!-- /.col-lg-12 -->
-            </div> 
-                       <?php
-            $f=$_SESSION['id'];
-            $f1=$_SESSION['sid'];
-            $sql="SELECT U_id,F_name,L_name,U_name,U_gender,U_email,U_phone_no,U_category  FROM User WHERE U_id='$f'";
-                             $query = $conn->query($sql);
-                            if($query)
-                            {
-                               $row=mysqli_fetch_row($query);
-                                $Full_Name=$row[1].' '.$row[2];
-                                $U_name=$row[3];
-                                $U_gender=$row[4];
-                                $U_email=$row[5];
-                                $U_phone_no=$row[6];
-                                $U_category=$row[7];
-                            }
-            $sql1="SELECT S_id,U_id,S_rollno,S_age,S_dob,S_address FROM Student WHERE U_id='$f' AND S_id='$f1'";
-                             $query1 = $conn->query($sql1);
-                            if($query1)
-                            {
-                                $row=mysqli_fetch_row($query1);
-                                $U_rollno=$row[2];
-                                $U_age=$row[3];
-                                $U_dob=$row[4];
-                                $U_add=$row[5];
-                            }
-            $sql2="SELECT Department.D_name,Department.D_period  FROM Department,Belongs WHERE Belongs.S_id='$f1' AND Department.D_id=Belongs.D_id";
-                             $query2 = $conn->query($sql2);
-                            if($query2)
-                            {
-                              $row=mysqli_fetch_row($query2);
-                              $U_department=$row[0];
-                              $U_Period=$row[1];
-                            }  
-            $sql3="SELECT Semester.year,Semester.season,Semester.Sem_no  FROM Semester,Studying WHERE Studying.S_id='$f1' AND Semester.Sem_id=Studying.Sem_id";
-                             $query3 = $conn->query($sql3);
-                            if($query3)
-                            {
-                              $row=mysqli_fetch_row($query3);
-                              $U_year=$row[0];
-                              $U_season=$row[1];
-                              $U_sem_no=$row[2];
-                            }  
-            $sql4="SELECT Course.C_name,Course.No_Of_Credits,Course.Type FROM Semester,Offers,Course,Handles,Department WHERE Semester.Sem_no='$U_sem_no' AND Semester.Sem_id=Offers.Sem_id AND Offers.C_id=Course.C_id AND Department.D_name='$U_department' AND Department.D_id=Handles.D_id AND Handles.C_id=Course.C_id";
-                              $result = $conn->query($sql4);
-                              $in=0;
-                              if ($result->num_rows > 0) 
-                              {
-                              while($row = $result->fetch_assoc()) 
-                              {
-                                   $course[]=$row['C_name'];
-                                    $credits[]=$row['No_Of_Credits'];
-                                   $type[]=$row['Type']; 
-                                   $in++;
-                              }
-                              }
-            ?>          
+            </div>          
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -239,55 +222,17 @@ if($query)
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form class="form-horizontal" role="form" action="Conform.php" method="POST">
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Full_Name:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$Full_Name.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">User_Name:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_name.'</p>'; ?> 
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Roll_no:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_rollno.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Branch:</label>
-                                            <div class="col-sm-10">
-                                           <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_department.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_year:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_year.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_sem:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_sem_no.'</p>'; ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Current_season:</label>
-                                            <div class="col-sm-10">
-                                            <?php echo'<p class="form-control-static" style="position:relative; left: 65px; font-size: 19px; font-style: italic;">'.$U_season.'</p>'; ?> 
-                                            </div>
-                                        </div> 
-                                       <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 16px;" for="text"> AVALIABLE_COURSES</label>
-                                        <br><br>
+                                    <form class="form-horizontal" role="form" action="addordrop1.php" method="POST">
+                                       
+                                       <label class="control-label col-sm-2" style="position: relative;left: 375px; font-size: 21px;" for="text">DROP_COURSES</label>
+                                            <br><br>
+                                            <center><p style="position: relative;left: 250px; font-size: 15px; font-style: italic;">(**Tick the courses that you want to drop**)</p></center>
+                                            <br>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Core_Courses:</label>
                                             <div class="col-sm-10">
                                             <?php 
+
                                             $flag1=0;
                                             for($ii=0;$ii<$in;$ii++)
                                             {
@@ -304,12 +249,12 @@ if($query)
                                             }
                                             if($flag1==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
                                             }  
                                             ?>
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Flexi_Cores:</label>
                                             <div class="col-sm-10" >
@@ -331,13 +276,13 @@ if($query)
 
                                             if($flag2==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
                                             } 
                                             ?>
                                             
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Bouquet_Cores:</label>
                                             <div class="col-sm-10" >
@@ -358,12 +303,12 @@ if($query)
                                             } 
                                             if($flag3==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
                                             } 
                                             ?>  
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">It_Electives:</label>
                                             <div class="col-sm-10" >
@@ -384,12 +329,12 @@ if($query)
                                             } 
                                             if($flag4==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
                                             } 
                                             ?>
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Math_Electives:</label>
                                             <div class="col-sm-10" >
@@ -411,12 +356,12 @@ if($query)
                                             }
                                             if($flag5==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
                                             }  
                                             ?>
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br>
                                          <div class="form-group">
                                             <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Skill_Electives:</label>
                                             <div class="col-sm-10" >
@@ -428,9 +373,9 @@ if($query)
                                             	{
                                             		$flag=1;
                                             echo'
-                                            <div class="checkbox" name="cx[]" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                            <div class="checkbox"  style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
                                                 <label>
-                                                    <input type="checkbox" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
+                                                    <input type="checkbox" name="cx[]" style="height: 16px; width: 18px;" value="'.$course[$ii].'">'.$course[$ii].'**('.$credits[$ii].'Credits)
                                                 </label>
                                             </div><br>';
                                             
@@ -438,36 +383,208 @@ if($query)
                                             }
                                             if($flag==0)
                                             {
-                                            	echo '<p class="form-control-static" style="position:relative; left: 135px; font-size: 17px; font-style: italic;">NOT_Avaliable For the Current Semester</p>';
+                                            	echo '<center><p class="form-control-static">------------------</p></center>';
+                                            } 
+                                            ?>
+                                            <br>
+                                            
+                                            </div>
+                                            </div>
+                                             <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 17px;" for="text">Additional_Project_1</label>
+                                             <div class="col-sm-10" >
+                                            <?php 
+                                            $flagx=0;
+                                            $sqlx="select Faculty_name,Credits from Additional where S_id='$f1'";
+                                            $queryx =$conn->query($sqlx);
+                                            $rowx=mysqli_fetch_row($queryx);
+                                            $facul=$rowx[0];
+                                            $cred=$rowx[1];
+                                            if(!empty($facul) && !empty($cred))
+                                            {
+                                            $flagx=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 18px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="ad" style="height: 16px; width: 18px;" value="'.$f1.'">Faculty_name:'.' '.$facul.' '.'('.$cred.'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            if($flagx==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            } 
+                                            ?>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <label class="control-label col-sm-2" style="position: relative;left: 375px; font-size: 21px;" for="text">ADD_COURSES</label>
+                                            <br><br>
+                                            <center><p style="position: relative;left: 250px; font-size: 15px; font-style: italic;">(**Tick the courses that you want to add**)</p></center>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Core_Courses:</label>
+                                            <div class="col-sm-10">
+                                            <?php 
+                                            $flag1=0;
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='CORE')
+                                                { $flag1=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            }
+                                            if($flag1==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            }  
+                                            ?>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Flexi_Cores:</label>
+                                            <div class="col-sm-10" >
+                                            <?php 
+                                            $flag2=0;
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='Flexi_CORE')
+                                                { $flag2=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            }
+
+                                            if($flag2==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            } 
+                                            ?>
+                                            
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Bouquet_Cores:</label>
+                                            <div class="col-sm-10" >
+                                            <?php 
+                                            $flag3=0;
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='Bouquet_CORE')
+                                                { $flag3=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            } 
+                                            if($flag3==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            } 
+                                            ?>  
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">It_Electives:</label>
+                                            <div class="col-sm-10" >
+                                            <?php 
+                                            $flag4=0;
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='It_Elective')
+                                                { $flag4=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            } 
+                                            if($flag4==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            } 
+                                            ?>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Math_Electives:</label>
+                                            <div class="col-sm-10" >
+                                            <?php
+                                            $flag5=0; 
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='Math_Elective')
+                                                {
+                                                    $flag5=1;
+                                            echo'
+                                            <div class="checkbox" style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            }
+                                            if($flag5==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
+                                            }  
+                                            ?>
+                                            </div>
+                                        </div>
+                                        <br>
+                                         <div class="form-group">
+                                            <label class="control-label col-sm-2" style="font-size: 17px;" for="text">Skill_Electives:</label>
+                                            <div class="col-sm-10" >
+                                            <?php 
+                                            $flag=0;
+                                            for($ii=0;$ii<$in1;$ii++)
+                                            {
+                                                if($type1[$ii]=='Skill_Elective')
+                                                {
+                                                    $flag=1;
+                                            echo'
+                                            <div class="checkbox"  style="position:relative; left: 135px; font-size: 16px; font-style: italic;">
+                                                <label>
+                                                    <input type="checkbox" name="cx1[]" style="height: 16px; width: 18px;" value="'.$course1[$ii].'">'.$course1[$ii].'**('.$credits1[$ii].'Credits)
+                                                </label>
+                                            </div><br>';
+                                            
+                                            }
+                                            }
+                                            if($flag==0)
+                                            {
+                                                echo '<center><p class="form-control-static">------------------</p></center>';
                                             } 
                                             ?>
                                             
                                             </div>
                                             </div>
                                             <br>
-                                             <label class="control-label col-sm-2" style="position: relative;left: -15px; font-size: 17px;" for="text">Additional_Project_1</label>
-                                            <br><br>
-                                            <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 16px;" for="text">Faculty_name:</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" class="form-control" style="position:relative; left: 65px;" name="fname1" placeholder="Enter Faculty Name....">
-                                            </div>
-                                            </div>
-                                            <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 16px;" for="text">No_Of_Credits:</label>
-                                            <div class="col-sm-10">
-                                            <select class="form-control" style="position:relative; left: 65px; " name="cr1">
-                                                <option value="">Select credits..</option>
-                                                <option value="2">2-cr</option>
-                                            
-                                                <option value="4">4-cr</option>
-                                              
-                                            </select>
-                                            </div>
-                                            </div>
                                             <br>
-                                        <button type="submit" name="log1" style="position:relative;left: 375px;" class="btn btn-default">Submit</button>
-                                        <button type="reset"  onclick="form.html" style="position:relative;left: 400px;" class="btn btn-default">Reset</button>
+                                        <button type="submit" name="log12" style="position:relative;left: 375px;" class="btn btn-default">Update</button>
                                     </form>
                                 </div>
                                
