@@ -190,68 +190,68 @@ include "dbConfig.php";
                                 <div class="col-lg-6">
                                     <form class="form-horizontal" role="form" action="test.php" method="POST">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Full_Name:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Full_Name:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$Full_Name.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Name:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">User_Name:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_name.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Email:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">User_Email:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_email.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">User_Role:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">User_Role:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_category.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Gender:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Gender:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_gender.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">phone_no:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">phone_no:</label>
                                             <div class="col-sm-10">
                                             <?php echo'<p class="form-control-static" style="position:relative; left: 40px; font-size: 20px;">'.$U_phone_no.'</p>'; ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Roll_No:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Roll_No:</label>
                                             <div class="col-sm-10">
                                             <input type="tel" class="form-control" style="position:relative; left: 40px;" name="rnum" placeholder="Enter Your Rollno....">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Age:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Age:</label>
                                             <div class="col-sm-10">
                                             <input type="number" class="form-control" style="position:relative; left: 40px;" name="age" placeholder="Enter Your Age....">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">DOB:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">DOB:</label>
                                             <div class="col-sm-10">
                                             <input type="date" name="dob" class="form-control" style="position:relative; left: 40px;">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Address:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Address:</label>
                                             <div class="col-sm-10">
                                             <textarea class="form-control" style="position:relative; left: 40px;" name="add" rows="3"></textarea>
                                             </div>
                                         </div>
    
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Branch:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Branch:</label>
                                             <div class="col-sm-10">
                                             <div class="radio" style="position:relative; left: 40px;">
                                                 <label>
@@ -266,7 +266,7 @@ include "dbConfig.php";
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-2" style="font-size: 20px;" for="text">Semster:</label>
+                                            <label class="control-label col-sm-2" style="font-size: 18px;" for="text">Semster:</label>
                                             <div class="col-sm-10">
                                             <select class="form-control" style="position:relative; left: 40px; " name="sem">
                                                 <option value="1">1</option>

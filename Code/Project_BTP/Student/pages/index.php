@@ -114,7 +114,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>Course Portal<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Course Registration</a>
+                                    <a href="check.php">Course Registration</a>
                                 </li>
                                 <li>
                                     <a href="login.html">View register courses</a>
@@ -200,7 +200,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="check.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
