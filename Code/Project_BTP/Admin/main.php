@@ -79,7 +79,7 @@ include "dbConfig.php";
                                         <p class="text-muted">
                                             Students</p>
                                     </a>
-                                    </a><a href="#" class="btn-box big span4"><i class="icon-group"></i>
+                                    </a><a href="facultytable.php" class="btn-box big span4"><i class="icon-group"></i>
                                         <p class="text-muted">
                                             faculties</p>
                                     </a>
@@ -95,8 +95,8 @@ include "dbConfig.php";
                                         </div>
                                         <div class="row-fluid">
                                             <div class="span12" style="position : relative; left :145px;">
-                                                <a href="#" class="btn-box small span4"><i class="icon-warning-sign"></i><b>Under Construction</b>
-                                                </a><a href="#" class="btn-box small span4"><i class="icon-warning-sign"></i><b>Under Construction</b>
+                                                <a href="sethod.php" class="btn-box small span4"><i class="icon-user"></i><b>Add HOD</b>
+                                                </a><a href="hodtable.php" class="btn-box small span4"><i class="icon-group"></i><b>View HOD's</b>
                                                 </a><a href="#" class="btn-box small span4"><i class="icon-warning-sign"></i><b>Under Construction</b> </a>
                                             </div>
                                         </div>

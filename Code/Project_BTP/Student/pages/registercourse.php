@@ -10,6 +10,7 @@ if($query)
     $row=mysqli_fetch_row($query);
     $ed=$row[0];
 }
+$date = date('Y-m-d H:i:s');
 $f1=$_SESSION['sid'];
 ?>
 <!DOCTYPE html>
@@ -361,7 +362,7 @@ $f1=$_SESSION['sid'];
                                             
                                             <br>
                                             </form>
-                                        <button type="submit" onclick="location.href='addordrop.php';" style="position:relative;left: 375px;" class="btn btn-default">Edit</button>
+                                        <button type="submit" <?php if ($ed <= $date){ ?> disabled <?php   } ?> onclick="location.href='addordrop.php';" style="position:relative;left: 375px;" class="btn btn-default">Edit</button>
                                     
                                 </div>
                                

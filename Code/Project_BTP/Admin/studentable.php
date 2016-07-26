@@ -71,7 +71,7 @@ include "dbConfig.php";
                         <div class="content">
                             <div class="module">
                                 <div class="module-head">
-                                    <h3>User Data Table</h3>
+                                    <h3>Student Data Table</h3>
                                 </div>
                                 <div class="module-body table">
                                     <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
