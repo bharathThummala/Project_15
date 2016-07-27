@@ -12,6 +12,10 @@ if($query)
 }
 $date = date('Y-m-d H:i:s');
 $f1=$_SESSION['sid'];
+$ql1="select S_id from Enrolls where S_id='$f1'";
+$count1=mysqli_num_rows($conn->query($ql1));
+$ql2="select S_id from Enrolls where S_id='$f1'";
+$count2=mysqli_num_rows($conn->query($ql2));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,7 +201,22 @@ $f1=$_SESSION['sid'];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                         <?php echo'<p class="form-control-static" style="position:relative; left: opx; font-size: 19px; font-style: Bold;">Form_Expires:'.'<a  style="font-size: 16px; font-style: italic;">  '.$ed.'</a></p>'; ?>
+                         <?php 
+                            if($date <$ed){ 
+                            echo'<p class="form-control-static" style="position:relative; left: opx; font-size: 19px; font-style: Bold;">Form_Expires:'.'<a  style="font-size: 16px; font-style: italic;">  '.$ed.'</a></p>';
+                              }
+                             else{
+                                if($count1>0 && $count2>0)
+                                {
+                                    echo'<p class="form-control-static" style="position:relative; left: opx; font-size: 19px; font-style: Bold;">Registration_Status:'.'<a  style="font-size: 16px; font-style: italic;" disabled><font color="green">ACCEPTED</font></a></p>';
+                                }
+                                else
+                                {
+                                          echo'<p class="form-control-static" style="position:relative; left: opx; font-size: 19px; font-style: Bold;">Registration_Status:'.'<a  style="font-size: 16px; font-style: italic;" >Not_Yet_Accepted</a></p>';
+
+                                }
+
+                                } ?>
                         </div>
                         <div class="panel-body">
                             <div class="row">

@@ -70,10 +70,10 @@ include "dbConfig.php";
                         <div class="content">
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid">
-                                    <a href="usertable.php" class="btn-box big span4"><i class="icon-list"></i>
+                                    <a href="#" class="btn-box big span4"><i class="icon-list"></i>
                                         <p class="text-muted">
                                             View courses</p>
-                                    </a><a href="studentable.php" class="btn-box big span4"><i class="icon-list-alt"></i>
+                                    </a><a href="check1.php" class="btn-box big span4"><i class="icon-list-alt"></i>
                                         <p class="text-muted">
                                             Validation</p>
                                     </a>

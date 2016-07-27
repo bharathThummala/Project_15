@@ -31,7 +31,7 @@ include "dbConfig.php";
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Your Profile</a></li>
-                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="main.php">Go to Dashboard</a></li>
                                     <li class="divider"></li>
                                     <li><a href="logout.php">Logout</a></li>
                                 </ul>
@@ -71,14 +71,16 @@ include "dbConfig.php";
         <th>Skill_Electives</th>
         <th>Additional_Projects</th>
         <th>No.of Credits</th>
-        <th style="position: relative;left: 32px;">STATUS</th>
+        <th>STATUS</th>
       </tr>
     </thead>
     <tbody>
     <?php
-
-    $C_sem=5;
-    $depat="COMPUTER SCIENCE & ENGNEERING";
+    $g=$_SESSION['fid'];
+    $aa="SELECT Sem_no,Department FROM HOD WHERE F_id='$g'";
+    $r1=mysqli_fetch_row($conn->query($aa));
+    $C_sem=$r1[0];
+    $depat=$r1[1];
     if($depat=="COMPUTER SCIENCE & ENGNEERING")
         $dd="CSE";
     if($depat=="ELECTRONIC COMMUNICATION & ENGNEERING")
@@ -94,9 +96,10 @@ include "dbConfig.php";
      $cour4=null;
      $cour5=null;
      $cour6=null;
-
      $crd=0;
      $m=$row["S_id"];
+     $ql="select S_id from Enrolls where S_id='$m'";
+     $count=mysqli_num_rows($conn->query($ql));
      $sql1="SELECT Course.C_name,Course.No_Of_Credits,Course.Type FROM Course,Dummy WHERE Dummy.S_id='$m' AND Dummy.C_id=Course.C_id";
      $result1 = $conn->query($sql1);
      if ($result1->num_rows > 0) {
@@ -105,27 +108,27 @@ include "dbConfig.php";
         $crd=$crd+$row1["No_Of_Credits"];
         if($row1["Type"]=="CORE")
         {
-        $cour1="{$row1["C_name"]} ({$row1["No_Of_Credits"]})  ;  {$cour1}";
+        $cour1="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour1}";
         }
          if($row1["Type"]=="Flexi_CORE")
         {
-        $cour2="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) ;  {$cour2}";
+        $cour2="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour2}";
         }
          if($row1["Type"]=="Bouquet_CORE")
         {
-        $cour3="{$row1["C_name"]} ({$row1["No_Of_Credits"]})  ;  {$cour3}";
+        $cour3="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour3}";
         }
          if($row1["Type"]=="It_Elective")
         {
-        $cour4="{$row1["C_name"]} ({$row1["No_Of_Credits"]})  ;  {$cour4}";
+        $cour4="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour4}";
         }
          if($row1["Type"]=="MATH_Elective")
         {
-        $cour5="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) ;  {$cour5}";
+        $cour5="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour5}";
         }
          if($row1["Type"]=="SKILL_Elective")
         {
-        $cour6="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) ;  {$cour6}";
+        $cour6="{$row1["C_name"]} ({$row1["No_Of_Credits"]}) {$cour6}";
         }
      }
      }
@@ -155,13 +158,22 @@ include "dbConfig.php";
         <td>'.$cour5.'</td>
         <td>'.$cour6.'</td>
         <td>Under Uma of 2 credits</td>
-        <td>'.$crd.'-Credits</td>
-        <td><form action="enroll.php" method="POST">
+        <td>'.$crd.'-Credits</td>';
+        if($count<=0)
+        {
+      echo '<td><form action="enroll.php" method="POST">
             <button type="submit" class="btn" style="background-color: green;" name="accept" id="accept" value='.$m.'>Accept</button>
-            <button type="submit" class="btn" style="background-color: red;" name="reject" id="reject" value='.$m.'>Reject</button>
+            <button type="submit" class="btn" style="background-color: red;" disabled>Reject</button>
         </form>
-        </td>
-      </tr>'; }}
+        </td>';
+         }
+         if($count>0)
+        {
+      echo '<td>
+            <button type="submit" class="btn" style="background-color: Aqua;" disabled>Accepted</button>
+            </td>';
+         }
+     echo  '</tr>'; }}
       ?>
     </tbody>
   </table>
