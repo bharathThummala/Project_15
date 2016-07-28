@@ -85,7 +85,7 @@ include "dbConfig.php";
         $dd="CSE";
     if($depat=="ELECTRONIC COMMUNICATION & ENGNEERING")
         $dd="ECE";
-    $sql="select User.U_id,Student.S_id,User.F_name,User.L_name,Student.S_rollno from Semester,Department,Belongs,Studying,Student,User where Semester.sem_no=5 and Department.D_name='$depat' and Semester.Sem_id=Studying.Sem_id and Studying.S_id=Student.S_id and Department.D_id=Belongs.D_id and Belongs.S_id=Student.S_id and Student.U_id=User.U_id";
+    $sql="select User.U_id,Student.S_id,User.F_name,User.L_name,Student.S_rollno from Semester,Department,Belongs,Studying,Student,User where Semester.sem_no='$C_sem' and Department.D_name='$depat' and Semester.Sem_id=Studying.Sem_id and Studying.S_id=Student.S_id and Department.D_id=Belongs.D_id and Belongs.S_id=Student.S_id and Student.U_id=User.U_id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc())

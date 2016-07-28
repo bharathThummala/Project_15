@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "dbConfig.php";
 // path where your CSV file is located
 if(isset($_POST["submit"]))

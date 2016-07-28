@@ -29,7 +29,7 @@ body {
 			<h6>Incorrect username and password</h6>
 		        <h6> Login again </h6>
                                 <p class="login button"> 
-                                    <input type="submit" onclick="location.href='index.html';" value="Login" /> 
+                                    <input type="submit" onclick="location.href='index.php';" value="Login" /> 
 			        </p>
                         </div>
 						</div>

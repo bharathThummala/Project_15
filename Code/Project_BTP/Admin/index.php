@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!empty($_SESSION['User'])) 
+{
+    header("location:main.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html >
   <head>

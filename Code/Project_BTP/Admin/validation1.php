@@ -139,6 +139,7 @@ if($f==0 && !empty($sd) && !empty($ed))
 											</div>
 										</div>
 									</form>
+									</div>
 							</div>
 						</div>
 					</div><!--/.content-->
