@@ -77,7 +77,7 @@ include "dbConfig.php";
                                         <p class="text-muted">
                                             Validation</p>
                                     </a>
-                                    </a><a href="#" class="btn-box big span4"><i class="icon-pencil"></i>
+                                    </a><a href="enrolled_courses.php" class="btn-box big span4"><i class="icon-pencil"></i>
                                         <p class="text-muted">
                                             Mark Attendences</p>
                                     </a>

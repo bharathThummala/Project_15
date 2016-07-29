@@ -4,7 +4,7 @@ include "dbConfig.php";
 if(isset($_POST["cr1"]))
 {
 $course=$_POST["cr1"];
-   $course=5001;
+   //$course=5001;
 }
 $ses=null;
 if(isset($_POST["sub"]))
@@ -57,7 +57,7 @@ $str = serialize($array);
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-               <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['User'].'</font></a>'; ?>
+               <?php echo '<a class="brand"><font color="Aquamarine">Welcome.....'.$_SESSION['uname'].'</font></a>'; ?>
                 <center class="brand" style="position: absolute;left: 640px;font-size: 30px;"><font color="#00e6e6">FACUTLY PANEL</font></center>
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav pull-right">
@@ -210,6 +210,11 @@ $str = serialize($array);
                                         $c11[1]=$ses;
                                         $sql11 = "SELECT Student.S_id,User.F_name,User.L_name,Student.S_rollno,Semester.Sem_no,Department.D_name FROM Enrolls,Student,User,Semester,Department,Belongs,Studying WHERE Enrolls.C_id='$course' AND Enrolls.S_id=Student.S_id AND Student.U_id=User.U_id AND Student.S_id=Studying.S_id AND Studying.Sem_id=Semester.Sem_id AND Student.S_id=Belongs.S_id  AND Belongs.D_id=Department.D_id";
                                         $result = $conn->query($sql11);
+                                        $counter=mysqli_num_rows($conn->query($sql11));
+                                        if($counter==0)
+                                        {
+                                        	$conn->query("DELETE FROM Session WHERE C_id='$course' AND Session_date='$ses'");
+                                        }
                                         if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) 
                                         {
@@ -241,7 +246,7 @@ $str = serialize($array);
                                 </div>
                                 <div class="control-group">
 								<div class="controls">
-							<center><button type="submit" name="attend" class="btn" <?php echo 'value='.$str  ?>  >Submit</button></center>
+							<center><button type="submit" name="attend" class="btn" <?php if ($counter==0){ ?> disabled <?php   } ?> <?php echo 'value='.$str  ?>  >Submit</button></center>
 								</div>
 							    </div>
 							    </form>
