@@ -1,13 +1,16 @@
 <?php
 session_start();
 include "dbConfig.php";
-$course=5001;
-$sql="select C_name from Course where C_id='$course'";
-$row=mysqli_fetch_row($conn->query($sql));
-$coursename=$row[0];
+if(isset($_POST["cr1"]))
+{
+$course=$_POST["cr1"];
+   $course=5001;
+}
 $ses=null;
 if(isset($_POST["sub"]))
 {
+	//$course=5001;
+$course=$_POST["sub"];
 $ses=$_POST["session"];
 }
 $flag=0;
@@ -21,15 +24,15 @@ if($count==0)
    $conn->query("insert into Session(C_id,Session_date) values('".$course."','".$ses."')");	
 }
 else
-{$flag=2;}
+{
+	$flag=2;
 }
-/*
-$array = array("Name"=>"Shubham","Age"=>"17","website"=>"http://mycodingtricks.com");
- 
-$string_array = serialize($array);
- 
-echo $string_array;
-*/
+}
+$sql="select C_name from Course where C_id='$course'";
+$row=mysqli_fetch_row($conn->query($sql));
+$coursename=$row[0];
+$array = array("id"=>"$course","session"=>"$ses");
+$str = serialize($array);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,7 +169,7 @@ echo $string_array;
                                         {
 										echo '<div class="control-group">
 											<div class="controls">
-												<button type="submit" name="sub" class="btn">Submit</button>
+												<button type="submit" name="sub" class="btn" value="'.$course.'">Submit</button>
 											</div>
 										</div>';} ?>
 									</form>
@@ -238,7 +241,7 @@ echo $string_array;
                                 </div>
                                 <div class="control-group">
 								<div class="controls">
-							<center><button type="submit" name="attend" class="btn" <?php echo 'value='.$c11  ?>  >Submit</button></center>
+							<center><button type="submit" name="attend" class="btn" <?php echo 'value='.$str  ?>  >Submit</button></center>
 								</div>
 							    </div>
 							    </form>
